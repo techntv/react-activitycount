@@ -1,6 +1,6 @@
-import Terrain from 'react-icons/lib/md/terrain.js'
-import SnowFlake from 'react-icons/lib/ti/weather-snow.js'
-import Calendar from 'react-icons/lib/fa/calendar.js'
+import Terrain from 'react-icons/lib/md/terrain.js';
+import SnowFlake from 'react-icons/lib/ti/weather-snow.js';
+import Calendar from 'react-icons/lib/fa/calendar.js';
 
 const SkiDayRow = ({resort,date,powder,backcountry}) => (
     <tr>
