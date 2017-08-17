@@ -5,9 +5,10 @@ import SkiDayRow from './SkiDayRow.jsx'
 import React from 'react';
 import { NavLink, Route } from 'react-router-dom';
 
-const SkiDayList = ({match}) => {
-    // const nameFilter = match.params.filter;
-    // const filteredDays = (!nameFilter || !nameFilter.match(/powder|backcountry/)) ? days : days.filter(day => day[nameFilter]);
+const SkiDayList = (props) => {
+    let powderDay = props.days.filter((day) => day.powder == true);
+    let backcountryDay = props.days.filter((day) => day.backcountry == true);
+    console.log(powderDay);
     return (
     <div className="ski-day-list">      
     <table>
@@ -20,26 +21,18 @@ const SkiDayList = ({match}) => {
             </tr>
             <tr>
                 <td colSpan={4}>
-                    <NavLink to={`${match}`}>All Days</NavLink>
-                    <NavLink to={`${match}/powder`}>Powder Days</NavLink>
-                    <NavLink to={`${match}/backcountry`}>Backcountry Days</NavLink>
+                     <NavLink to={`${props.match.url}`}>All Days</NavLink>
+                    <NavLink to={`${props.match.url}/powder`}>Powder Days</NavLink>
+                    <NavLink to={`${props.match.url}/backcountry`}>Backcountry Days</NavLink> 
                 </td>
             </tr>
         </thead>
-        <tbody> 
-
-            {/* {days.map((day, i) => 
-                <SkiDayRow key={i} 
-                            {...day}/>
-            )} */}
-
-             <Route path={match.path} render={() => <SkiDayRow />}/>
-            <Route path={`${match.path}/powder`} render={() => <SkiDayRow />}/>
-            <Route path={`${match.path}/backcountry`} render={() => <SkiDayRow />}/> 
-        </tbody>
-    </table>
-    {/* <Route path="/list-days" component="SkiDayList"/>
-    <Route path='/list-days/powder' component={component}/> */}
+        
+            <Route exact path={props.match.path} render={() => <SkiDayRow data={props.days}/>}/>
+            <Route path={`${props.match.path}/powder`} render={() => <SkiDayRow data={powderDay}/>}/>
+            <Route path={`${props.match.path}/backcountry`} render={() => <SkiDayRow data={backcountryDay}/>}/>  
+        
+    </table>  
 
     
     </div>  

@@ -61,8 +61,10 @@ class App extends Component{
                                                       backcountry={this.countDays("backcountry")}/>}/>
                     <Route path='/add-day' 
                            render={() => <AddDayForm />}/>
+                           
                     <Route path='/list-days'
-                           render={() => <SkiDayList days={this.state.allSkiDays}
+                           render={({match}) => <SkiDayList days={this.state.allSkiDays}
+                                                            match={match}
                                                       />}/> 
                     
                 </div>

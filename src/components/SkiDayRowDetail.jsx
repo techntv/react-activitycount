@@ -1,20 +1,25 @@
 import React from 'react';
+import Terrain from 'react-icons/lib/md/terrain.js';
+import SnowFlake from 'react-icons/lib/ti/weather-snow.js';
+import Calendar from 'react-icons/lib/fa/calendar.js';
 
-const SkiDayRowDetail = () => (
+const SkiDayRowDetail = (props) => {
+    
+    return (
      <tr>
         <td>
-            {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+            {props.date.getMonth() + 1}/{props.date.getDate()}/{props.date.getFullYear()}
         </td>
         <td>
-            {resort}
+            {props.resort}
         </td>
         <td>
-            {(powder) ? <SnowFlake /> : null}
+            {(props.powder) ? <SnowFlake /> : null}
         </td>
         <td>
-            {(backcountry) ? <Terrain /> : null}
+            {(props.backcountry) ? <Terrain /> : null}
         </td>
     </tr>
-);
+)};
 
 module.exports = SkiDayRowDetail;
