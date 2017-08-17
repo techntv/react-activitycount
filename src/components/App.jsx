@@ -3,6 +3,18 @@ import SkiDayList from './SkiDayList.jsx';
 import SkiDayCount from './SkiDayCount.jsx';
 import AddDayForm from './AddDayForm.jsx';
 import Menu from './Menu.jsx';
+import Page404 from './Page404.jsx';
+import About from './About.jsx';
+import Featured from './Featured.jsx';
+
+import { 
+        BrowserRouter as Router,
+        Route,
+        Link,
+        HashRouter,
+        Switch 
+    } from 'react-router-dom';
+
 class App extends Component{
     constructor(props){
         super(props);
@@ -26,7 +38,8 @@ class App extends Component{
                     powder: false,
                     backcountry: true
                 }
-            ]
+            ],
+           
         }
     }
     countDays(filter){
@@ -35,23 +48,29 @@ class App extends Component{
             (day) => (filter) ? day[filter] : day).length
     }
     render(){
+        
         return (
-            <div className="app"> 
-                <Menu />
-                {(this.props.location.pathname === "/") ? 
-                    <SkiDayCount total={this.countDays()}
-                            powder={this.countDays("powder")}
-                            backcountry={this.countDays("backcountry")}/> :
-                (this.props.location.pathname === "/add-day") ? 
-                    <AddDayForm /> :
-                    <SkiDayList days={this.state.allSkiDays}
-                                filter={this.props.params.filter}/>
-                }  
-               
-               
-            </div>
+            <Router>
+                <div className="app"> 
+                    <Menu />
+                   
+                
+                    <Route exact path='/' 
+                           render={() => <SkiDayCount total={this.countDays()}
+                                                      powder={this.countDays("powder")}
+                                                      backcountry={this.countDays("backcountry")}/>}/>
+                    <Route path='/add-day' 
+                           render={() => <AddDayForm />}/>
+                    <Route path='/list-days'
+                           render={() => <SkiDayList days={this.state.allSkiDays}
+                                                      />}/> 
+                    
+                </div>
+            </Router>
         )
     }
 }
 
 export default App
+
+// filter={this.props.params.filter}

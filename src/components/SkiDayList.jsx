@@ -3,10 +3,11 @@ import SnowFlake from 'react-icons/lib/ti/weather-snow.js'
 import Calendar from 'react-icons/lib/fa/calendar.js'
 import SkiDayRow from './SkiDayRow.jsx'
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
-const SkiDayList = ({days}) => {
-    const filteredDays = (!filter || !filter.match(/powder|backcountry/)) ? days : days.filter(day => day[filter])
+const SkiDayList = ({match}) => {
+    // const nameFilter = match.params.filter;
+    // const filteredDays = (!nameFilter || !nameFilter.match(/powder|backcountry/)) ? days : days.filter(day => day[nameFilter]);
     return (
     <div className="ski-day-list">      
     <table>
@@ -19,19 +20,28 @@ const SkiDayList = ({days}) => {
             </tr>
             <tr>
                 <td colSpan={4}>
-                    <Link to="list-days">All Days</Link>
-                    <Link to="/list-days/powder">Powder Days</Link>
-                    <Link to="/list-days/backcountry">Backcountry Days</Link>
+                    <NavLink to={`${match}`}>All Days</NavLink>
+                    <NavLink to={`${match}/powder`}>Powder Days</NavLink>
+                    <NavLink to={`${match}/backcountry`}>Backcountry Days</NavLink>
                 </td>
             </tr>
         </thead>
         <tbody> 
-            {filteredDays.map((day, i) => 
+
+            {/* {days.map((day, i) => 
                 <SkiDayRow key={i} 
                             {...day}/>
-            )}
+            )} */}
+
+             <Route path={match.path} render={() => <SkiDayRow />}/>
+            <Route path={`${match.path}/powder`} render={() => <SkiDayRow />}/>
+            <Route path={`${match.path}/backcountry`} render={() => <SkiDayRow />}/> 
         </tbody>
     </table>
+    {/* <Route path="/list-days" component="SkiDayList"/>
+    <Route path='/list-days/powder' component={component}/> */}
+
+    
     </div>  
     )
 }

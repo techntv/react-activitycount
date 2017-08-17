@@ -3,7 +3,9 @@ import SnowFlake from 'react-icons/lib/ti/weather-snow.js';
 import Calendar from 'react-icons/lib/fa/calendar.js';
 import React from 'react';
 
-const SkiDayRow = ({resort,date,powder,backcountry}) => (
+const SkiDayRow = (props) => {
+    
+    return (
     <tr>
         <td>
             {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
@@ -19,6 +21,7 @@ const SkiDayRow = ({resort,date,powder,backcountry}) => (
         </td>
     </tr>
 );
+}
 
 SkiDayRow.propTypes = {
 	resort: React.PropTypes.string.isRequired,
