@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import SkiDayList from './components/SkiDayList.jsx';
-// import SkiDayCount from './components/SkiDayCount.jsx';
+
 import App from './components/App.jsx';
-import { Router, Route, hashHistory } from 'react-router';
+import Page404 from './components/Page404.jsx';
+import About from './components/About.jsx';
+
+import { 
+        BrowserRouter as Router,
+        Route,
+        Link,
+        HashRouter,
+        Switch 
+    } from 'react-router-dom';
 
 import jQuery from 'jquery';
 global.jQuery = jQuery;
@@ -13,9 +21,26 @@ let Bootstrap = require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'font-awesome/css/font-awesome.min.css';
-window.React = React;
-ReactDOM.render(<App />, document.getElementById('app'));
 
-// ReactDOM.render(<SkiDayCount />, 
-//             document.getElementById('app')
+ReactDOM.render(
+        <Router>
+            <div>
+           
+            <Switch>
+                 <Route exact path='/' component={App}/>
+                 <Route path="/list-days" component={App}>
+                    <Route path=":filter" component={App} />
+                 </Route>
+                 <Route path="/add-day" component={App}/>
+                 <Route path='/about' component={About}/>
+                 <Route component={Page404}/>
+            </Switch>
+           </div>
+        </Router>,
+        document.getElementById('app')
+);
+
+// ReactDOM.render(
+//     <App />,
+//     document.getElementById('app')
 // );
