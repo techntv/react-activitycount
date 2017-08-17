@@ -5,7 +5,7 @@ import AddDayForm from './AddDayForm.jsx';
 import Menu from './Menu.jsx';
 import Page404 from './Page404.jsx';
 import About from './About.jsx';
-import Featured from './Featured.jsx';
+
 
 import { 
         BrowserRouter as Router,
@@ -54,19 +54,20 @@ class App extends Component{
                 <div className="app"> 
                     <Menu />
                    
-                
-                    <Route exact path='/' 
-                           render={() => <SkiDayCount total={this.countDays()}
-                                                      powder={this.countDays("powder")}
-                                                      backcountry={this.countDays("backcountry")}/>}/>
-                    <Route path='/add-day' 
-                           render={() => <AddDayForm />}/>
-                           
-                    <Route path='/list-days'
-                           render={({match}) => <SkiDayList days={this.state.allSkiDays}
-                                                            match={match}
-                                                      />}/> 
-                    
+                    <Switch>
+                        <Route exact path='/' 
+                            render={() => <SkiDayCount total={this.countDays()}
+                                                        powder={this.countDays("powder")}
+                                                        backcountry={this.countDays("backcountry")}/>}/>
+                        <Route path='/add-day' 
+                            render={() => <AddDayForm />}/>
+
+                        <Route path='/list-days'
+                            render={({match}) => <SkiDayList days={this.state.allSkiDays}
+                                                                match={match}
+                                                        />}/>  
+                        <Route component={Page404}/>
+                    </Switch>
                 </div>
             </Router>
         )
