@@ -8,7 +8,7 @@ const SkiDayRowDetail = (props) => {
     return (
      <tr>
         <td>
-            {props.date.getMonth() + 1}/{props.date.getDate()}/{props.date.getFullYear()}
+            {props.date}
         </td>
         <td>
             {props.resort}

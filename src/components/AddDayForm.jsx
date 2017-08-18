@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-const AddDayForm = ({resort, date, powder, backcountry}) => {
+const AddDayForm = ({resort, date, powder, backcountry, onNewDay}) => {
      const submit = (event) => {
             event.preventDefault();
-            console.log('resort', _resort.value);
-            console.log('date', _date.value);
-            console.log('powder', _powder.checked);
-            console.log('backcountry', _backcountry.checked);
+            onNewDay({
+                resort: _resort.value,
+                date: _date.value,
+                powder: _powder.checked,
+                backcountry: _backcountry.checked
+            })
+            _resort.value = ''
+            _date.value = ''
+            _powder.checked = false
+            _backcountry.checked = false
 
             
     }
