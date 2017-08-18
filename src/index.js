@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
-import Member from './components/Member.jsx';
+
 import jQuery from 'jquery';
 global.jQuery = jQuery;
 global.$ = jQuery;
